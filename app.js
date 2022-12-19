@@ -6,11 +6,12 @@ const methodOverride = require('method-override')
 const photoControllers = require('./controllers/photoControllers')
 const pageControllers = require('./controllers/pageControllers')
 const app = express();
-const port = 3000;
+const port = process.env.PORT ||5000;
 
 //Connect Db
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://127.0.0.1:27017/pcat-test-db')
+//mongoose.connect('mongodb://127.0.0.1:27017/pcat-test-db')
+mongoose.connect('mongodb+srv://aykut:jGCKH75HR2UcfBsB@cluster0.eenteif.mongodb.net/pcat-db?retryWrites=true&w=majority')
 
 //Template Engine
 app.set("view engine", "ejs")
@@ -40,6 +41,11 @@ app.get('/add', pageControllers.getPhotoAddPage)
  {
     console.log(`Sunucu ${port} numaralı port ile başlatıldı`);
  })
+
+ /*module.exports = app;
+ module.exports = methodOverride;
+ module.exports = fileUpload;
+ module.exports = mongoose;*/
 
  /*
  //Middlewares - Logger
